@@ -13,10 +13,10 @@ void arbol(Turtle *t, float tam, int n){
 	turtleForward(t,tam);
 
 	turtleLeft(t, 30.0f);
-	arbol(t,tam*0.4,n-1);
+	arbol(t,tam*0.7,n-1);
 
 	turtleRight(t,60.0f);
-	arbol(t, tam*0.4, n-1);
+	arbol(t, tam*0.7, n-1);
 	
 	turtleLeft(t,30.0f);
 	turtleBackward(t, tam);
@@ -37,19 +37,21 @@ void levy ( Turtle * turtle , float length , int depth ) {
 	}
 
 void arbol3(Turtle *t, float tam, int n){
+	if (n == 0 || tam < 5)
+		return;
+
 	turtleForward(t,tam);
-
+//rama izquierda
 	turtleLeft(t, 30.0f);
-	arbol(t, tam*0.7, n-1);
-
+	arbol3(t, tam*0.7, n-1);
+//rama central
 	turtleRight(t, 30.0f);
-	arbol(t, tam*0.7, n-1);
-
+	arbol3(t, tam*0.7, n-1);
+//rama derecha
 	turtleRight(t, 30.0f);
-	arbol(t, tam*0.7, n-1);
-
+	arbol3(t, tam*0.7, n-1);
+//vuelve a la posicion original
 	turtleLeft(t, 30.0f);
-
 	turtleBackward(t,tam);
 }
 
