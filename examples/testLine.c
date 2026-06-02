@@ -112,6 +112,31 @@ void arbolcolor(Turtle *t, float tam, int n){
 	turtleBackward(t,tam);
 }
 
+
+void levycolor ( Turtle * t, float tam , int n ) {
+//variacion de color segun el nivel
+	if(n>=7)
+		turtleSetColor(t, 255, 0, 0);
+	else if (n>=5)
+		turtleSetColor(t, 255,165, 0);
+	else if (n>=3)
+		turtleSetColor(t, 255, 255, 0);
+	else
+		turtleSetColor(t, 0, 100, 0);
+//caso base
+	if(n==0){
+		turtleForward (t,tam);
+		return;
+	}
+	turtleLeft ( t , 45) ;
+	levycolor ( t , tam / sqrt (2) , n - 1) ;
+
+	turtleRight ( t , 90) ;
+	levycolor ( t , tam / sqrt (2) , n - 1) ;
+
+	turtleLeft ( t , 45) ;
+}
+
 int main(void){
   
   TurtleApp *app = turtleAppCreate(1100,600, "Test Line");
@@ -122,16 +147,16 @@ int main(void){
   Turtle *t = turtleAppGetTurtle(app);
 
   turtlePenUp(t);
-  turtleGoTo(t, 550.0f, 590.0f);
+  turtleGoTo(t, 550.0f, 300.0f);
   turtlePenDown(t);
 
   turtleSetColor(t, 255, 100, 0);
   turtleSetSpeed(t, 8.0f);
   
-  turtleLeft(t, 90.0f);
+  //turtleLeft(t, 90.0f);
 
-  arbolcolor(t, 150.0, 7);
-turtleSetColor(t, 255, 0, 0);
+  levycolor(t, 150.0, 7);
+
   turtleAppRun(app);
   turtleAppDestroy(app);
   return 0;
