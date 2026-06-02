@@ -87,14 +87,17 @@ void arbolcolor(Turtle *t, float tam, int n){
 	//caso base
 	if (n==0 || tam <5)
 		return;
-
+	
+	turtlePenDown(t);
 //variacion de color dependiendo del nivel
-	if (n>=6)
-		turtleSetColor(t,120,70,20);
-	else if (n>=4)
-	       turtleSetColor(t,110,60,20);
+	if(n >= 7)
+    		turtleSetColor(t, 120, 70, 20);      
+	else if(n >= 5)
+    		turtleSetColor(t, 0, 120, 0);        
+	else if(n >= 3)
+    		turtleSetColor(t, 0, 200, 0);        
 	else
-		turtleSetColor(t,0,200,0);
+    		turtleSetColor(t, 100, 255, 100);    
 
 	turtleForward(t,tam);
 //rama izquierd
@@ -105,6 +108,7 @@ void arbolcolor(Turtle *t, float tam, int n){
 	arbolcolor(t, tam*0.7, n-1);
 //devuelve a la tortuga a la posicion y direccion inicial
 	turtleLeft(t,30.0f);
+	turtlePenUp(t);
 	turtleBackward(t,tam);
 }
 
@@ -126,8 +130,8 @@ int main(void){
   
   turtleLeft(t, 90.0f);
 
-  arbolcolor(t, 150.0, 6);
-
+  arbolcolor(t, 150.0, 7);
+turtleSetColor(t, 255, 0, 0);
   turtleAppRun(app);
   turtleAppDestroy(app);
   return 0;
