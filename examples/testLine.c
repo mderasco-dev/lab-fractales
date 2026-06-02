@@ -55,6 +55,21 @@ void arbol3(Turtle *t, float tam, int n){
 	turtleBackward(t,tam);
 }
 
+void arbold(Turtle *t, float tam, int n){
+	if (n==0 || tam<5)
+		return;
+
+	turtleForward(t,tam);
+
+	turtleLeft(t, 30.0f);
+	arbold(t, tam*0.5, n-1);
+
+	turtleRight(t, 60.0f);
+	arbold(t, tam*0.8,n-1);
+
+	turtleLeft(t,30.0f);
+	turtleBackward(t,tam);
+}
 int main(void){
   
   TurtleApp *app = turtleAppCreate(1100,600, "Test Line");
@@ -73,7 +88,7 @@ int main(void){
   
   turtleLeft(t, 90.0f);
 
-  arbol3(t, 150.0, 6);
+  arbold(t, 150.0, 6);
 
   turtleAppRun(app);
   turtleAppDestroy(app);
